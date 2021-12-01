@@ -1,16 +1,20 @@
 //onde fica o codigo
-const db = require('./database');
 const express = require('express');
+const cors = require('cors');
+
+const router = require('./src/routes/routes');
+
 
 const app = express();
+app.use(cors());
 app.use(express.json());
+app.use(router);
 
-app.post('/users', (request,response) => {
-    return response.json({
-        teste: 'ok',
-        message: 'funcionou',
-    })
-});
-app.listen(3333);//criando rota para fazer as requisicoes no insomnia
 
-console.log('Comecou');//teste para saber se esta funcionando
+app.listen(4000, ()=>{
+    console.log("APlicacao rodando na porta 4000")
+});//criando rota para fazer as requisicoes no insomnia
+
+app.get('/',(req,res)=>{
+    res.send("SALverrrr")
+})
